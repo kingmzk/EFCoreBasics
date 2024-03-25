@@ -14,6 +14,6 @@ namespace EFCoreBasics.Models
 
 
         //Many-to-Many Relationship
-        public ICollection<EmployeeProject> EmployeeProjects { get; set; }  //Collection Navigation Property
+        public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; }  //Collection Navigation Property
     }
 }

@@ -21,7 +21,8 @@ namespace EFCoreBasics.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(connectionString);
+                //   optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseLazyLoadingProxies().UseSqlServer(connectionString);
             }
         }
 

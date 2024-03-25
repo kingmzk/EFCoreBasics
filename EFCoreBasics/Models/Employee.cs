@@ -20,16 +20,16 @@ namespace EFCoreBasics.Models
         public long EmpSalary { get; set; }
 
         //one-to-one relationship with employee details
-        public EmployeeDetails EmployeeDetails { get; set; } //reference navigation property to dependent
+        public virtual EmployeeDetails EmployeeDetails { get; set; } //reference navigation property to dependent
 
 
         //one-to-Many relationship with manager
         public int ManagerId { get; set; }  //ForeignKey
-        public Manager Manager { get; set; }  //reference navigation property to dependent (Manager)
+        public virtual Manager Manager { get; set; }  //reference navigation property to dependent (Manager)
 
 
         //Many to Many relationship with Project
-        public ICollection<EmployeeProject> EmployeeProjects { get; set; } //Collection navigation property
+        public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; } //Collection navigation property
 
 
     }

@@ -10,9 +10,9 @@ namespace EFCoreBasics.Models
     public class EmployeeProject
     {
         public int EmployeeId { get; set; }
-        public Employee Employee { get; set; } //Reference Navigation Property
+        public virtual Employee Employee { get; set; } //Reference Navigation Property
         public int ProjectId { get; set; }
-        public Project Project { get; set; } //Reference Navigation Property
+        public virtual Project Project { get; set; } //Reference Navigation Property
 
     }
 }

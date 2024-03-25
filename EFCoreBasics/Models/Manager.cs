@@ -15,6 +15,6 @@ namespace EFCoreBasics.Models
         public string MngLastName { get; set; }
 
         //one to many relationship with Employee
-        public ICollection<Employee> Employees { get; set; }  //Collection Navigation property to represent all employees managed by this manager
+        public virtual ICollection<Employee> Employees { get; set; }  //Collection Navigation property to represent all employees managed by this manager
     }
 }

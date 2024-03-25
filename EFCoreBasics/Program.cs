@@ -142,6 +142,121 @@ using (var context = new AppDbContext())
     }
     */
 
+    //Explicit Loading
+    /*
+    var employees = context.Employees.ToList(); //load main entity
+    foreach (var emp in employees)
+    {
+        //Load Related Entity
+        context.Entry(emp).Reference(e => e.EmployeeDetails).Load();
+
+        Console.WriteLine($"Id : {emp.EmployeeDetails.EmployeeId} Employee Name : {emp.EmpFirstName} Employee Address : {emp.EmployeeDetails.Address}");
+    }
+    */
+    /*
+    var employees = context.Employees.ToList(); //load main entity
+    foreach (var emp in employees)
+    {
+        //Load Related Entity
+        context.Entry(emp).Reference(e => e.EmployeeDetails).Load();
+
+        if (emp.EmployeeDetails != null)
+        {
+            Console.WriteLine($"Id : {emp.EmployeeDetails.EmployeeId} Employee Name : {emp.EmpFirstName} Employee Address : {emp.EmployeeDetails.Address}");
+        }
+        else
+        {
+            Console.WriteLine($"Id : {emp.EmployeeId} Employee Name : {emp.EmpFirstName} No Employee Details Found");
+        }
+    }
+
+
+    var manager = context.Managers.ToList();
+   foreach(var mng in manager)
+    {
+        Console.WriteLine($"Manager Name : {mng.MngFirstName} & Manager last name : {mng.MngLastName}");
+        context.Entry(mng).Collection(e => e.Employees).Load();
+
+        if(mng.Employees.Any())
+        {
+            Console.WriteLine("Employess : ");
+
+            foreach (var emp in mng.Employees)
+            {
+                Console.WriteLine($"Employee Name : {emp.EmpFirstName} {emp.EmpLastName}");
+            }
+          
+        }
+
+    }
+    */
+
+    /*
+    //LAZY LOADING
+    var manager = context.Managers.ToList();
+    foreach (var mng in manager)
+    {
+        Console.WriteLine($"Manager Name : {mng.MngFirstName} & Manager last name : {mng.MngLastName}");
+        if (mng.Employees.Any())
+        {
+            Console.WriteLine("Employess : ");
+
+            foreach (var emp in mng.Employees)
+            {
+                Console.WriteLine($"Employee Name : {emp.EmpFirstName} {emp.EmpLastName}");
+            }
+
+        }
+    }
+    */
+
+    //Transaction
+
+    //Begin transaction
+    using (var transaction = context.Database.BeginTransaction())
+    {
+        //perform database operations
+        var employeeId = 2;
+
+        //retreive the employee, employee deatils, project and manager to update
+        var employeeToUpdate = context.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+        var employeeDetailsToUpdate = context.EmployeeDetails.FirstOrDefault(e => e.Id == employeeToUpdate.EmployeeId);
+
+        if(employeeToUpdate != null && employeeDetailsToUpdate != null)
+        {
+            try
+            {
+                //update  the employee last name  and address
+                employeeToUpdate.EmpLastName = "Syed";
+                employeeDetailsToUpdate.Address = "Australia";
+
+                //update manager details
+                employeeToUpdate.ManagerId = 1;
+
+                //save changes
+                context.SaveChanges();
+
+                //commit the transaction
+                transaction.Commit();
+
+                Console.WriteLine("Updated Successfully");
+            }
+            catch(Exception) 
+            {
+                transaction.Rollback();
+                Console.WriteLine("Rollback has occured");
+                throw;
+            }
+         
+        }
+        else
+        {
+            throw new Exception();
+        }
+       
+    }
+
+
 
 }
 

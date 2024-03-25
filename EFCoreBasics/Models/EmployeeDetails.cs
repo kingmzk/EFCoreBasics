@@ -19,6 +19,6 @@ namespace EFCoreBasics.Models
 
         public int EmployeeId { get; set; }  //Foreign Key
 
-        public Employee Employee { get; set; }  //Reference Navigation Property
+        public virtual Employee Employee { get; set; }  //Reference Navigation Property
     }
 }
