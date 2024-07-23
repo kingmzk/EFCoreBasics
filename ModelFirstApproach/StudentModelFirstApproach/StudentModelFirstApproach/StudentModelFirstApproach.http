@@ -1,0 +1,6 @@
+@StudentModelFirstApproach_HostAddress = http://localhost:5079
+
+GET {{StudentModelFirstApproach_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

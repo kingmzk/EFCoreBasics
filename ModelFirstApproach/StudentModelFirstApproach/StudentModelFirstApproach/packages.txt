@@ -1,0 +1,13 @@
+﻿Microsoft.EntityFrameworkCore.SqlServer
+
+Microsoft.EntityFrameworkCore.Tools
+
+Microsoft.Extensions.Configuration
+
+
+
+Scaffold-DbContext "Server=KINGMZK\\SQLEXPRESS;Database=StudentModelFirstApproach;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityframeworkCore.SQLserver -OutputDir Models
+
+Scaffold-DbContext "Server=KINGMZK\SQLEXPRESS;Database=StudentModelFirstApproach;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityframeworkCore.SQLserver -OutputDir Models
+
+"Server=KINGMZK\\SQLEXPRESS;Database=StudentModelFirstApproach;Trusted_Connection=True;TrustServerCertificate=True;"
